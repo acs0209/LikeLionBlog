@@ -2,10 +2,12 @@ package sgdevcamp.blog.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import sgdevcamp.blog.data.entity.Question;
 import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.QuestionRepository;
@@ -63,11 +65,29 @@ public class QuestionController {
 
     @GetMapping("/modify/{id}")
     public String questionModify(QuestionForm questionForm, @PathVariable("id") Long id) {
-        Question question = questionService.getQuestion(id);
-        question.setSubject(questionForm.getSubject());
-        question.setContent(questionForm.getContent());
-        return "question_Form";
+        Question question = this.questionService.getQuestion(id);
+        questionForm.setSubject(question.getSubject());
+        questionForm.setContent(question.getContent());
+        return "question_form";
     }
 
+    @PostMapping("/modify/{id}")
+    public String questionModify(@Valid QuestionForm questionForm, BindingResult bindingResult, @PathVariable("id") Long id) {
+        if (bindingResult.hasErrors()) {
+            return "question_form";
+        }
+
+        Question question = this.questionService.getQuestion(id);
+
+        this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
+        return String.format("redirect:/question/detail/%s", id);
+    }
+
+    @GetMapping("/delete/{id}")
+    public String questionDelete(@PathVariable("id") Long id) {
+        Question question = this.questionService.getQuestion(id);
+        this.questionService.delete(question);
+        return "redirect:/";
+    }
 
 }
