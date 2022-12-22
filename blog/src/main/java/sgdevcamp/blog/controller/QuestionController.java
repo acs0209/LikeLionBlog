@@ -53,5 +53,13 @@ public class QuestionController {
         return "redirect:/question/list";
     }
 
+    @GetMapping("/modify/{id}")
+    public String questionModify(QuestionForm questionForm, @PathVariable("id") Long id) {
+        Question question = questionService.getQuestion(id);
+        question.setSubject(questionForm.getSubject());
+        question.setContent(questionForm.getContent());
+        return "question_Form";
+    }
+
 
 }

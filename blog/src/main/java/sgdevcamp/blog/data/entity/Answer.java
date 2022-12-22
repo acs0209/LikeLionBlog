@@ -23,7 +23,10 @@ public class Answer {
 
     private LocalDateTime createDate;
 
+    @ManyToOne
+    private SiteUser siteUser;
 
+    private LocalDateTime modifyDate;
 
 
 }
