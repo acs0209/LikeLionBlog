@@ -9,6 +9,7 @@ import sgdevcamp.blog.data.entity.Answer;
 import sgdevcamp.blog.data.entity.Question;
 import sgdevcamp.blog.data.repository.AnswerRepository;
 import sgdevcamp.blog.data.repository.QuestionRepository;
+import sgdevcamp.blog.service.QuestionService;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -93,4 +94,18 @@ class BlogApplicationTests {
 
 		answer1.getQuestion();
 	}
+
+	@Autowired
+	private QuestionService questionService;
+
+	@Test
+	void testJpaQuestionService() {
+		for (int i = 1; i <= 50; i++) {
+			String subject = String.format("테스트 데이터입니다:[%03d]", i);
+			String content = "내용무";
+			this.questionService.create(subject, content);
+		}
+	}
+
+
 }
