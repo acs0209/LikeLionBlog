@@ -7,10 +7,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import sgdevcamp.blog.data.entity.Question;
+import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.QuestionRepository;
 import sgdevcamp.blog.dto.answer.AnswerForm;
 import sgdevcamp.blog.dto.question.QuestionForm;
 import sgdevcamp.blog.service.QuestionService;
+import sgdevcamp.blog.service.UserService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.List;
 public class QuestionController {
 
     private final QuestionService questionService;
+    private final UserService userService;
 
     @GetMapping("/list")
     public String list(Model model, @RequestParam(value="page", defaultValue = "0") int page) {
@@ -48,8 +51,13 @@ public class QuestionController {
         if (bindingResult.hasErrors()) {
             return "question_form";
         }
+        SiteUser siteUser = this.userService.getUser(questionForm.getUsername());
+        if (siteUser == null) {
+            return "question_form";
+        }
 
-        this.questionService.create(questionForm.getSubject(), questionForm.getContent());
+
+        this.questionService.create(questionForm.getSubject(), questionForm.getContent(), siteUser);
         return "redirect:/question/list";
     }
 

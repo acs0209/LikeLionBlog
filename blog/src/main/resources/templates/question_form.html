@@ -4,6 +4,10 @@
     <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
         <div th:replace="~{form_errors :: formErrorsFragment}"></div>
         <div class="mb-3">
+            <label for="username" class="form-label">사용자 이름</label>
+            <input th:field="*{username}" class="form-control" >
+        </div>
+        <div class="mb-3">
             <label for="subject" class="form-label">제목</label>
             <input type="text" th:field="*{subject}" class="form-control">
         </div>
