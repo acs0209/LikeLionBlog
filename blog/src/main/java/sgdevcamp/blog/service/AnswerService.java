@@ -6,8 +6,10 @@ import sgdevcamp.blog.data.entity.Answer;
 import sgdevcamp.blog.data.entity.Question;
 import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.AnswerRepository;
+import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +24,26 @@ public class AnswerService {
         answer.setCreateDate(LocalDateTime.now());
         answer.setSiteUser(user);
         this.answerRepository.save(answer);
+    }
 
+    public Answer getAnswer(Long id) {
+        Optional<Answer> answer = this.answerRepository.findById(id);
+        if (answer.isPresent()) {
+            return  answer.get();
+        }
+        else {
+            throw new DataNotFoundException("answer not found");
+        }
+    }
+
+    public void modify(Answer answer, String content) {
+        answer.setContent(content);
+        answer.setModifyDate(LocalDateTime.now());
+        this.answerRepository.save(answer);
+    }
+
+    public void delete(Answer answer) {
+        this.answerRepository.delete(answer);
     }
 
 }
