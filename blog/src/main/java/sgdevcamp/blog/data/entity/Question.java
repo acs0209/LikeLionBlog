@@ -32,4 +32,6 @@ public class Question {
 
     private LocalDateTime modifyDate;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 }

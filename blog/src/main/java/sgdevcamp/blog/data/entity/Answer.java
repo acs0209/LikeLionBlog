@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -28,5 +29,7 @@ public class Answer {
 
     private LocalDateTime modifyDate;
 
+    @OneToMany(mappedBy = "answer" , cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 
 }
