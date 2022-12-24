@@ -3,8 +3,8 @@
 
 역할
 -----------
-'''
-##제공 서비스	 
+
+제공 서비스	 
 1. 질문 글 서비스 - 사용자가 질문 글을 crud 이용
 2. 답변 글 서비스  - 사용자가 답글을 crud 이용
 3. 댓글 서비스  - 사용자가 댓글을 crud 이용
@@ -12,25 +12,36 @@
   + DB에 저장하는 비밀번호는 스프링 시큐리티를 사용하여 암호화하여 저장
   + 모든 글은 작성할때 사용자 이름이 필요하다 입력한 사용자 이름이 DB에 없을 경우 글을 작성할 수 없다.
   + DB에 이미 사용자 이름이나 이메일이 있을 경우 화면에 이미 존재하는 사용자라고 오류 메시지 띄우기
-'''
 
-#기술 스택
+
+기술 스택
 ---------
-###Backend
-  -Java 11
-  -Spring Boot
-  -Spring Web
-  -Spring Data JPA
-  -Spring Security
-###Frontend
-  -Spring Thymeleaf
-  -Bootstrap(HTML, CSS)
-###DB
-  -MySQL
+Backend
+ -Java 11
+ -Spring Boot
+ -Spring Web
+ -Spring Data JPA
+ -Spring Security
+Frontend
+ -Spring Thymeleaf
+ -Bootstrap(HTML, CSS)
+DB
+ -MySQL
   
-#아키 텍처
+아키 텍처
 ---------
 <img width="524" alt="아키텍처" src="https://user-images.githubusercontent.com/69111959/209432870-7036ac44-bbc2-4ae5-b3f3-d7817d1d10f0.png">
 
+
+
+프로젝트 진행하면서 궁금한 부분
+스프링 시큐리티
+1. 프로젝트의 모든 보안을 스프링 시큐리티에 맡겨도 되는지 궁금합니다. 
+2. 실무에서도 스프링 시큐리티를 적극적으로 활용하는지 궁금합니다
+3. 어느 선까지 스프링 시큐리티 도움을 받으면 좋을지 궁금합니다.
+
+유효성 검증
+스프링 validation 과 타임리프를 활용하여 프론트에 오류 메시지를 띄웠는데요 지금 저는 view를 통째로 사용자에게 보내는 식으로 프로젝트를 만들었는데 나중에
+프론트와 api 통신하는 경우 스프링 validation을 사용하여 오류 메시지를 json 형식으로 보낼 수 있나요?
 
 
