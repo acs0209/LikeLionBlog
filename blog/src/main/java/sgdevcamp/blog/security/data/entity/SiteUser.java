@@ -1,4 +1,4 @@
-package sgdevcamp.blog.data.entity;
+package sgdevcamp.blog.security.data.entity;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -2,22 +2,18 @@ package sgdevcamp.blog.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-import sgdevcamp.blog.data.entity.Question;
-import sgdevcamp.blog.data.entity.SiteUser;
-import sgdevcamp.blog.data.repository.QuestionRepository;
-import sgdevcamp.blog.dto.answer.AnswerForm;
-import sgdevcamp.blog.dto.question.QuestionForm;
+import sgdevcamp.blog.security.data.entity.Question;
+import sgdevcamp.blog.security.data.entity.SiteUser;
+import sgdevcamp.blog.dto.request.AnswerForm;
+import sgdevcamp.blog.dto.request.QuestionForm;
 import sgdevcamp.blog.service.QuestionService;
 import sgdevcamp.blog.service.UserService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequestMapping("/question")
 @RequiredArgsConstructor

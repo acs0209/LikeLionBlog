@@ -6,9 +6,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import sgdevcamp.blog.data.entity.Question;
-import sgdevcamp.blog.data.entity.SiteUser;
-import sgdevcamp.blog.data.repository.QuestionRepository;
+import sgdevcamp.blog.security.data.entity.Question;
+import sgdevcamp.blog.security.data.entity.SiteUser;
+import sgdevcamp.blog.security.data.repository.QuestionRepository;
 import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;

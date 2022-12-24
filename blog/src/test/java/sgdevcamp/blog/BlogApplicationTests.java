@@ -1,14 +1,13 @@
 package sgdevcamp.blog;
 
-import com.mysql.cj.log.Log;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
-import sgdevcamp.blog.data.entity.Answer;
-import sgdevcamp.blog.data.entity.Question;
-import sgdevcamp.blog.data.repository.AnswerRepository;
-import sgdevcamp.blog.data.repository.QuestionRepository;
+import sgdevcamp.blog.security.data.entity.Answer;
+import sgdevcamp.blog.security.data.entity.Question;
+import sgdevcamp.blog.security.data.repository.AnswerRepository;
+import sgdevcamp.blog.security.data.repository.QuestionRepository;
 import sgdevcamp.blog.service.QuestionService;
 
 
@@ -16,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 

@@ -5,16 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import sgdevcamp.blog.data.entity.Answer;
-import sgdevcamp.blog.data.entity.Question;
-import sgdevcamp.blog.data.entity.SiteUser;
-import sgdevcamp.blog.dto.answer.AnswerForm;
+import sgdevcamp.blog.security.data.entity.Answer;
+import sgdevcamp.blog.security.data.entity.Question;
+import sgdevcamp.blog.security.data.entity.SiteUser;
+import sgdevcamp.blog.dto.request.AnswerForm;
 import sgdevcamp.blog.service.AnswerService;
 import sgdevcamp.blog.service.QuestionService;
 import sgdevcamp.blog.service.UserService;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 
 @Controller
 @RequestMapping("/answer")

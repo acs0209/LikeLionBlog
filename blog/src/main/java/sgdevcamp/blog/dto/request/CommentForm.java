@@ -1,4 +1,4 @@
-package sgdevcamp.blog.dto.comment;
+package sgdevcamp.blog.dto.request;
 
 
 import lombok.Getter;
