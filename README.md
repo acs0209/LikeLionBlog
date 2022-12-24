@@ -4,7 +4,7 @@
 역할
 -----------
 
-제공 서비스	 
+## 제공 서비스	 
 1. 질문 글 서비스 - 사용자가 질문 글을 crud 이용
 2. 답변 글 서비스  - 사용자가 답글을 crud 이용
 3. 댓글 서비스  - 사용자가 댓글을 crud 이용
@@ -16,32 +16,61 @@
 
 기술 스택
 ---------
-Backend
- -Java 11
- -Spring Boot
- -Spring Web
- -Spring Data JPA
- -Spring Security
-Frontend
- -Spring Thymeleaf
- -Bootstrap(HTML, CSS)
-DB
- -MySQL
+### Backend
+
+    Java 11
+    Spring Boot
+    Spring Web
+    Spring Data JPA
+    Spring Security
+### Frontend
+
+    Spring Thymeleaf
+    Bootstrap(HTML, CSS)
+### DB
+
+    MySQL
   
 아키 텍처
 ---------
 <img width="524" alt="아키텍처" src="https://user-images.githubusercontent.com/69111959/209432870-7036ac44-bbc2-4ae5-b3f3-d7817d1d10f0.png">
 
+# 유저 화면
+## 메인 화면
+![메인 화면](https://user-images.githubusercontent.com/69111959/209436105-46909e3a-0da3-446a-b191-ec972813d97c.png)
+
+글을 작성하면 최신글이 아래로 쌓이는 구조로 설정했고 각 글을 클릭하면 해당글로 이동하도록 설정했다.
+게시글당 10개의 글이 보이도록 처리하여 10개가 넘으면 다음 게시글로 넘어가도록 페이징 처리를 하였다.
+아래쪽 버튼에서는 클릭기준으로 -5 ~ +5 가 되도록하였다.
+
+## 내부 화면
+![내부 화면](https://user-images.githubusercontent.com/69111959/209436114-8f74f9f6-586b-423c-9be2-89a0d2ecd4c4.png)
+
+답변글과 댓글의 순서는 처음 작성한 글이 맨위에 올라오는 순서로 설정했다 답변글과 댓글에 페이징 처리는 하지 못했다.
+
+## 회원가입 화면
+![회원가입](https://user-images.githubusercontent.com/69111959/209436516-ed56c38e-1ddf-43a4-97c5-7781acc8d4cb.png)
 
 
-프로젝트 진행하면서 궁금한 부분
-스프링 시큐리티
+입력값에 설정을 두어 정해진 설정에 맞지 않으면 화면에 오류 메시지가 띄도록 설정하였다.
+
+
+# 프로젝트 진행하면서 궁금한 부분
+
+## 스프링 시큐리티
+
 1. 프로젝트의 모든 보안을 스프링 시큐리티에 맡겨도 되는지 궁금합니다. 
 2. 실무에서도 스프링 시큐리티를 적극적으로 활용하는지 궁금합니다
 3. 어느 선까지 스프링 시큐리티 도움을 받으면 좋을지 궁금합니다.
 
-유효성 검증
-스프링 validation 과 타임리프를 활용하여 프론트에 오류 메시지를 띄웠는데요 지금 저는 view를 통째로 사용자에게 보내는 식으로 프로젝트를 만들었는데 나중에
-프론트와 api 통신하는 경우 스프링 validation을 사용하여 오류 메시지를 json 형식으로 보낼 수 있나요?
+## 유효성 검증
 
+스프링 validation 과 타임리프를 활용하여 프론트에 오류 메시지를 띄웠는데요 지금 저는 view를 통째로 사용자에게 보내는 식으로 프로젝트를 만들었는데 나중에
+프론트와 api 통신하는 경우 스프링 validation을 사용하여 오류 메시지를 json 형식으로 보낼 수 있나요? 입력값이 정해진 설정에 맞지 않게 입력하면 해당 오류 메시지를 프론트에
+어떻게 보내야 하는지 궁금합니다.
+
+## 유저 권한 부여
+
+security 패키지에 UserRole enum을 만들어서 활용할려 했지만 어떻게 권한을 줘야할지 생각이 안떠올라 사용자 권한을 설정하지 못했습니다. 현재 제 코드에서 권한을 언제 줘야 하나요?
+제 코드 상황에서뿐만 아니라 유저 권한같은 경우는 언제 설정해야 할지 알려주시면 감사하겠습니다.
 
