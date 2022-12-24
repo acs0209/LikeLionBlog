@@ -51,12 +51,12 @@
                               th:text="| - ${comment.siteUser.username}, ${#temporals.format(comment.createDate, 'yyyy-MM-dd HH:mm')} (수정: ${#temporals.format(comment.modifyDate, 'yyyy-MM-dd HH:mm')})|"></span>
                         <span th:if="${comment.modifyDate == null}"
                               th:text="| - ${comment.siteUser.username}, ${#temporals.format(comment.createDate, 'yyyy-MM-dd HH:mm')}|"></span>
-                        <a th:href="@{|/comment/modify/${comment.id}|}" class="small">수정</a>,
-                        <a href="javascript:void(0);" class="small delete" th:data-uri="@{|/comment/delete/${comment.id}|}">삭제</a>
+                        <a th:href="@{|/comment/modify/${comment.id}|}" class="small text-black ">수정</a>,
+                        <a href="javascript:void(0);" class="small delete  text-black" th:data-uri="@{|/comment/delete/${comment.id}|}">삭제</a>
                     </div>
                 </div>
                 <div>
-                    <a th:href="@{|/comment/create/answer/${answer.id}|}" class="small"><small>댓글 추가 ..</small></a>
+                    <a th:href="@{|/comment/create/answer/${answer.id}|}" class="small text-black"><small>댓글 추가 ..</small></a>
                 </div>
                 <!-- 답변 댓글 End -->
             </div>
@@ -70,7 +70,7 @@
                 <input th:field="*{username}" class="form-control" >
             </div>
             <textarea th:field="*{content}" rows="10" class="form-control"></textarea>
-            <input type="submit" value="답변등록" class="btn btn-primary my-2">
+            <input style="background-color: rgb(211,211,211)"  type="submit" value="답변등록" class="text-black btn btn-primary my-2">
         </form>
     </div>
     <script layout:fragment="script" type='text/javascript'>

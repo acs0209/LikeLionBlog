@@ -3,8 +3,8 @@ package sgdevcamp.blog.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import sgdevcamp.blog.security.data.entity.SiteUser;
-import sgdevcamp.blog.security.data.repository.UserRepository;
+import sgdevcamp.blog.data.entity.SiteUser;
+import sgdevcamp.blog.data.repository.UserRepository;
 
 import java.util.Optional;
 

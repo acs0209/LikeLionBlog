@@ -2,10 +2,10 @@ package sgdevcamp.blog.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import sgdevcamp.blog.security.data.entity.Answer;
-import sgdevcamp.blog.security.data.entity.Question;
-import sgdevcamp.blog.security.data.entity.SiteUser;
-import sgdevcamp.blog.security.data.repository.AnswerRepository;
+import sgdevcamp.blog.data.entity.Answer;
+import sgdevcamp.blog.data.entity.Question;
+import sgdevcamp.blog.data.entity.SiteUser;
+import sgdevcamp.blog.data.repository.AnswerRepository;
 import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;
