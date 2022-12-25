@@ -6,6 +6,7 @@ import sgdevcamp.blog.data.entity.Answer;
 import sgdevcamp.blog.data.entity.Question;
 import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.AnswerRepository;
+import sgdevcamp.blog.dto.request.AnswerForm;
 import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;
@@ -36,14 +37,31 @@ public class AnswerService {
         }
     }
 
-    public void modify(Answer answer, String content) {
-        answer.setContent(content);
-        answer.setModifyDate(LocalDateTime.now());
-        this.answerRepository.save(answer);
+    public Long modify(Long id, AnswerForm answerForm) {
+        Optional<Answer> answer = this.answerRepository.findById(id);
+        if (answer.isPresent()) {
+            answer.get().setContent(answerForm.getContent());
+            answer.get().setModifyDate(LocalDateTime.now());
+            this.answerRepository.save(answer.get());
+        }
+        else {
+            throw new DataNotFoundException("answer not found");
+        }
+
+        return answer.get().getQuestion().getId();
+
     }
 
-    public void delete(Answer answer) {
-        this.answerRepository.delete(answer);
+    public Long delete(Long id) {
+        Optional<Answer> answer = this.answerRepository.findById(id);
+        if (answer.isPresent()) {
+            this.answerRepository.delete(answer.get());
+        }
+        else {
+            throw new DataNotFoundException("answer not found");
+        }
+        return answer.get().getQuestion().getId();
+
     }
 
 }

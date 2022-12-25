@@ -46,7 +46,6 @@ public class AnswerController {
     public String  answerModify(AnswerForm answerForm, @PathVariable("id") Long id) {
 
         Answer answer = this.answerService.getAnswer(id);
-
         answerForm.setContent(answer.getContent()); // 답변 수정시 기존의 내용이 필요하므로 AnswerForm 객체에 조회한 값을 저장
         return "answer_form";
     }
@@ -57,17 +56,15 @@ public class AnswerController {
             return "answer_form";
         }
 
-        Answer answer = this.answerService.getAnswer(id);
-        this.answerService.modify(answer, answerForm.getContent());
-
-        return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+        Long answerQuestionId = this.answerService.modify(id, answerForm);
+        return String.format("redirect:/question/detail/%s", answerQuestionId);
     }
 
     @GetMapping("/delete/{id}")
     public String answerDelete(@PathVariable("id") Long id) {
-        Answer answer = this.answerService.getAnswer(id);
-        this.answerService.delete(answer);
-        return String.format("redirect:/question/detail/%s", answer.getQuestion().getId());
+
+        Long answerQuestionId = this.answerService.delete(id);
+        return String.format("redirect:/question/detail/%s", answerQuestionId);
     }
 
 }

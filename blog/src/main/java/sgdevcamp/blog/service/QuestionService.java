@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import sgdevcamp.blog.data.entity.Question;
 import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.QuestionRepository;
+import sgdevcamp.blog.dto.request.QuestionForm;
 import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;
@@ -49,15 +50,33 @@ public class QuestionService {
         this.questionRepository.save(q);
     }
 
-    public void modify(Question question, String subject, String content) {
-        question.setSubject(subject);
-        question.setContent(content);
-        question.setModifyDate(LocalDateTime.now());
-        this.questionRepository.save(question);
+    public QuestionForm modify(QuestionForm questionForm, Long id) {
+        Optional<Question> question = questionRepository.findById(id);
+        if (question.isPresent()) {
+            question.get().setSubject(questionForm.getSubject());
+            question.get().setContent(questionForm.getContent());
+            question.get().setModifyDate(LocalDateTime.now());
+            this.questionRepository.save(question.get());
+        }
+        else {
+            throw new DataNotFoundException("question not found");
+        }
+
+        questionForm.setSubject(question.get().getSubject());
+        questionForm.setContent(question.get().getContent());
+
+        return questionForm;
     }
 
-    public void delete(Question question) {
-        this.questionRepository.delete(question);
+    public void delete(Long id) {
+        Optional<Question> question = questionRepository.findById(id);
+        if (question.isPresent()) {
+            this.questionRepository.delete(question.get());
+        }
+        else {
+            throw new DataNotFoundException("question not found");
+        }
+
     }
 
 }

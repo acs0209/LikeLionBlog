@@ -73,16 +73,14 @@ public class QuestionController {
             return "question_form";
         }
 
-        Question question = this.questionService.getQuestion(id);
-
-        this.questionService.modify(question, questionForm.getSubject(), questionForm.getContent());
+        this.questionService.modify(questionForm, id);
         return String.format("redirect:/question/detail/%s", id);
     }
 
     @GetMapping("/delete/{id}")
     public String questionDelete(@PathVariable("id") Long id) {
-        Question question = this.questionService.getQuestion(id);
-        this.questionService.delete(question);
+
+        this.questionService.delete(id);
         return "redirect:/";
     }
 
