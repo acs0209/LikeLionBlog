@@ -6,6 +6,7 @@ import sgdevcamp.blog.data.entity.Answer;
 import sgdevcamp.blog.data.entity.Comment;
 import sgdevcamp.blog.data.entity.SiteUser;
 import sgdevcamp.blog.data.repository.CommentRepository;
+import sgdevcamp.blog.dto.request.CommentForm;
 import sgdevcamp.blog.exception.DataNotFoundException;
 
 import java.time.LocalDateTime;
@@ -36,16 +37,29 @@ public class CommentService {
         }
     }
 
-    public Comment modify(Comment comment, String content) {
-        comment.setContent(content);
-        comment.setModifyDate(LocalDateTime.now());
-        comment = this.commentRepository.save(comment);
+    public Long modify(Long id, CommentForm commentForm) {
+        Optional<Comment> comment = this.commentRepository.findById(id);
+        if (comment.isPresent()) {
+            comment.get().setContent(commentForm.getContent());
+            comment.get().setModifyDate(LocalDateTime.now());
+            this.commentRepository.save(comment.get());
+        }
+        else {
+            throw new DataNotFoundException("comment not found");
+        }
 
-        return comment;
+        return comment.get().getQuestionId();
     }
 
-    public void delete(Comment comment) {
-        this.commentRepository.delete(comment);
+    public Long delete(Long id) {
+        Optional<Comment> comment = this.commentRepository.findById(id);
+        if (comment.isPresent()) {
+            this.commentRepository.delete(comment.get());
+        }
+        else {
+            throw new DataNotFoundException("comment not found");
+        }
+        return comment.get().getQuestionId();
     }
 
 }

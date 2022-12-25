@@ -59,17 +59,15 @@ public class CommentController {
             return "comment_form";
         }
 
-        Comment comment = this.commentService.getComment(id);
-        comment = this.commentService.modify(comment, commentForm.getContent());
-        return String.format("redirect:/question/detail/%s", comment.getQuestionId());
+        Long commentQuestionId = this.commentService.modify(id, commentForm);
+        return String.format("redirect:/question/detail/%s", commentQuestionId);
     }
 
     @GetMapping("/delete/{id}")
     public String deleteComment(@PathVariable("id") Long id) {
-        Comment comment = this.commentService.getComment(id);
 
-        this.commentService.delete(comment);
-        return String.format("redirect:/question/detail/%s", comment.getQuestionId());
+        Long commentQuestionId = this.commentService.delete(id);
+        return String.format("redirect:/question/detail/%s", commentQuestionId);
     }
 
 }
