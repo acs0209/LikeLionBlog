@@ -9,4 +9,6 @@ public class TestController2 {
     private int num75;
     private int num71235;
     private int num75123;
+    private int num7123123125123;
+    private int num75112312323;
 }
